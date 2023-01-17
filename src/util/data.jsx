@@ -1,4 +1,4 @@
-const faqData = [
+export const faqData = [
   {
     id: 1,
 
@@ -40,4 +40,11 @@ const faqData = [
   },
 ]
 
-export default faqData
+export function wait(ms = 500) {
+  return  new Promise(resolve => setTimeout(resolve, ms))
+  
+}
+
+export function getRandomBetween(min=20, max=150, randomNum) {
+  return Math.floor(randomNum *(max - min) + min)
+}
