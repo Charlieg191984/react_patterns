@@ -45,6 +45,6 @@ export function wait(ms = 500) {
   
 }
 
-export function getRandomBetween(min=20, max=150, randomNum) {
+export function getRandomBetween(min=100, max=300, randomNum) {
   return Math.floor(randomNum *(max - min) + min)
 }
