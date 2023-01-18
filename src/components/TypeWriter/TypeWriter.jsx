@@ -1,55 +1,38 @@
-import React from 'react'
+import { useRef, useEffect } from 'react'
+import { wait, getRandomBetween } from '../../util/data'
 
-const TypeWriter = ({ tracker }) => {
-  
+const TypeWriter = () => {
+  const container = useRef(null)
+
+   const draw = async () => {
+     const textElement = container.current.textContent
+     let soFar = ''
+
+     for (const letter of textElement) {
+       container.current.textContent = soFar += letter
+       const { typeMin, typeMax } = container.current.dataset
+
+       const amountOfTimeToWait = getRandomBetween(typeMin, typeMax)
+
+       await wait(amountOfTimeToWait)
+     }
+   }
+
+   useEffect(() => {
+     draw()
+   }, [])
+
   return (
-    <div className="py-4">
+    <div className="py-4 h-screen">
       <h1
-        ref={tracker}
-        className="my-4 border-2 px-2 py-4 shadow-md text-2xl text-cyan-900 rounded-md"
-        data-type-max="100"
-        data-type-min="400"
+        ref={container}
+        className="my-4  px-4 py-4 text-4xl text-indigo-500  capitalize"
+        data-type-max="20000"
+        data-type-min="10000"
       >
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis eligendi
-        voluptates ipsa molestiae cum, dolore incidunt illo corporis,
-        necessitatibus doloribus, deserunt ratione exercitationem quibusdam
-        animi harum tempore dolorem est natus laboriosam obcaecati veniam iusto
-        autem excepturi esse. Alias aperiam nesciunt veniam autem culpa vero.
-        Ullam temporibus beatae maxime consequatur minus.
+        Hello my name is Charlie a Frontend Developer based out of NEW YORK
+        CITY.
       </h1>
-     {/*  <h2
-        ref={tracker}
-        className="my-4 border-2 px-2 py-4 shadow-md text-xl text-yellow-900 rounded-md"
-        data-type-max="0"
-        data-type-min="75"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias odio
-        tenetur dicta voluptatum dolore commodi odit, a cum vero nisi veritatis
-        quibusdam harum, inventore at facilis ab eius optio vel laborum
-        laudantium quidem cumque. Inventore, amet? Perferendis odit
-        reprehenderit iusto?
-      </h2>
-      <h3
-        ref={tracker}
-        className="my-4 border-2 px-2 py-4 shadow-md text-lg text-pink-900 rounded-md"
-        data-type-max="100"
-        data-type-min="300"
-      >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error laborum
-        possimus labore voluptate assumenda repellat provident? Voluptatem quod
-        eum optio atque, ad asperiores debitis ratione ex officia magni.
-        Voluptatum, recusandae.
-      </h3>
-      <h4
-        ref={tracker}
-        className="my-4 border-2 px-2 py-4 shadow-md text-md   text-green-900 rounded-md"
-        data-type-max="50"
-        data-type-min="200"
-      >
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
-        neque odit eligendi repellat voluptas consequatur sapiente provident
-        suscipit maxime architecto.
-      </h4> */}
     </div>
   )
 }
